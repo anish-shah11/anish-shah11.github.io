@@ -215,10 +215,10 @@ strong { font-weight: 600; color: var(--text); }
 /* The big name — signature gradient animation */
 .hero__name {
   font-family: var(--font-display);
-  font-size: clamp(5.5rem, 16vw, 11rem);
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
   font-weight: 700;
-  line-height: 0.88;
-  letter-spacing: -0.03em;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
   background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 45%, var(--violet) 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
@@ -240,44 +240,27 @@ strong { font-weight: 600; color: var(--text); }
   letter-spacing: 0.01em;
 }
 
-/* Performance counter widget */
-.hero__perf {
-  display: inline-flex;
-  align-items: center;
-  gap: 1.5rem;
-  background: rgba(13, 21, 38, 0.85);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 0.9rem 1.75rem;
+/* Skills constellation widget */
+.hero__skills {
   margin-bottom: 2.25rem;
-  backdrop-filter: blur(10px);
-}
-
-.perf-stat {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0.2rem;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.perf-label {
-  font-size: 0.60rem;
+.skills-label {
+  font-size: 0.65rem;
   color: var(--text-muted);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.perf-value {
-  font-size: 0.95rem;
-  color: var(--cyan);
-  font-weight: 500;
-}
-
-.perf-divider {
-  width: 1px;
-  height: 36px;
-  background: var(--border);
-  flex-shrink: 0;
+#skillsCanvas {
+  width: 100%;
+  max-width: 580px;
+  height: 130px;
+  display: block;
 }
 
 /* CTA buttons */
@@ -894,14 +877,9 @@ strong { font-weight: 600; color: var(--text); }
   }
   .nav__toggle { display: flex; }
 
-  .hero__name { font-size: clamp(4rem, 20vw, 6rem); }
+  .hero__name { font-size: clamp(1.9rem, 7vw, 3rem); }
 
-  .hero__perf {
-    gap: 1rem;
-    padding: 0.75rem 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+  #skillsCanvas { height: 110px; }
 
   .about__sidebar {
     grid-template-columns: 1fr;
@@ -929,6 +907,189 @@ strong { font-weight: 600; color: var(--text); }
     transform: none;
     transition: none;
   }
-  #topoCanvas { display: none; }
+  #topoCanvas, #skillsCanvas { display: none; }
+  .project-flip__inner { transition: none; }
 }
 
+/* ================================================================
+   SCROLL PROGRESS BAR
+================================================================ */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--cyan), var(--violet));
+  z-index: 400;
+  pointer-events: none;
+  transition: width 80ms linear;
+}
+
+/* ================================================================
+   CUSTOM CURSOR GLOW
+================================================================ */
+.cursor-glow {
+  position: fixed;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 207, 255, 0.055) 0%, transparent 68%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  will-change: transform;
+}
+
+/* ================================================================
+   SECTION PROGRESS DOTS
+================================================================ */
+.section-dots {
+  position: fixed;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.section-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  display: block;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+
+.section-dot::after {
+  content: attr(data-label);
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.section-dot:hover::after { opacity: 1; }
+
+.section-dot.active {
+  background: var(--cyan);
+  transform: scale(1.6);
+  box-shadow: 0 0 8px var(--cyan-glow);
+}
+
+.section-dot:hover {
+  background: var(--cyan);
+  transform: scale(1.4);
+}
+
+@media (max-width: 900px) {
+  .section-dots { display: none; }
+}
+
+/* ================================================================
+   FLIP-CARD PROJECTS
+================================================================ */
+
+/* The outer article becomes a perspective container — no padding/bg */
+.project-flip {
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  min-height: 230px;
+  perspective: 1100px;
+  transform: none !important; /* disable translate-Y hover on outer */
+}
+
+.project-flip__inner {
+  position: relative;
+  width: 100%;
+  min-height: 230px;
+  transform-style: preserve-3d;
+  transition: transform 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-flip:hover .project-flip__inner {
+  transform: rotateY(180deg);
+}
+
+.project-flip__front,
+.project-flip__back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  transition: border-color 0.25s;
+}
+
+.project-flip:hover .project-flip__front {
+  border-color: var(--border-hover);
+}
+
+.project-flip__back {
+  transform: rotateY(180deg);
+  background: var(--surface-2);
+  border-color: rgba(0, 207, 255, 0.18);
+  justify-content: space-between;
+}
+
+.project-flip__back h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cyan);
+  margin-bottom: 0.25rem;
+}
+
+.project-flip__back p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  flex: 1;
+}
+
+.flip-hint {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  opacity: 0.4;
+  margin-top: auto;
+  letter-spacing: 0.06em;
+}
+
+.back-links {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.back-links a {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--cyan);
+  padding: 0.3rem 0.7rem;
+  border: 1px solid rgba(0, 207, 255, 0.28);
+  border-radius: var(--radius);
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.back-links a:hover { background: var(--cyan-dim); }

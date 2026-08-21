@@ -15,6 +15,10 @@
 </head>
 <body>
 
+  <!-- UX: scroll progress + cursor glow -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
   <!-- ─── NAV ─────────────────────────────────────────── -->
   <nav class="nav" id="nav">
     <div class="nav__inner container">
@@ -52,22 +56,11 @@
       <!-- ✏️  Replace with your institution -->
       <p class="hero__institution">University of [Institution] &nbsp;·&nbsp; Advised by [Prof. Name]</p>
 
-      <!-- Live performance counter — signals domain expertise immediately -->
-      <div class="hero__perf" role="presentation">
-        <div class="perf-stat">
-          <span class="perf-label mono">CYCLES</span>
-          <span class="perf-value mono" id="cycleCounter">0</span>
-        </div>
-        <div class="perf-divider" aria-hidden="true"></div>
-        <div class="perf-stat">
-          <span class="perf-label mono">MEMORY BW</span>
-          <span class="perf-value mono" id="bwCounter">— GB/s</span>
-        </div>
-        <div class="perf-divider" aria-hidden="true"></div>
-        <div class="perf-stat">
-          <span class="perf-label mono">THREADS</span>
-          <span class="perf-value mono">128</span>
-        </div>
+      <!-- Skills constellation — animated graph of core technologies -->
+      <div class="hero__skills" role="presentation" aria-label="Core skills visualization">
+        <span class="skills-label mono">// core expertise</span>
+        <!-- ✏️  Edit skill nodes in assets/js/main.js → SKILL_NODES array -->
+        <canvas id="skillsCanvas" aria-hidden="true"></canvas>
       </div>
 
       <div class="hero__actions">
@@ -196,48 +189,92 @@
 
       <div class="projects__grid">
 
-        <!-- PROJECT CARD ── copy this block to add more projects -->
-        <article class="project-card">
-          <div class="project-card__top">
-            <span class="project-status">Active</span>
-            <div class="project-card__links">
-              <a href="#" target="_blank" rel="noopener" title="GitHub repository">GH</a>
-              <a href="#" target="_blank" rel="noopener" title="Paper PDF">PDF</a>
+        <!-- PROJECT CARD ── Flip on hover to reveal description + links -->
+        <!-- ✏️  Copy this block to add more projects            -->
+        <article class="project-card project-flip">
+          <div class="project-flip__inner">
+            <!-- FRONT: title, status, tags -->
+            <div class="project-flip__front">
+              <div class="project-card__top">
+                <span class="project-status">Active</span>
+                <div class="project-card__links">
+                  <a href="#" target="_blank" rel="noopener" title="GitHub">GH</a>
+                  <a href="#" target="_blank" rel="noopener" title="Paper">PDF</a>
+                </div>
+              </div>
+              <h3>Project Title One</h3>
+              <div class="project-card__tags">
+                <span>CUDA</span><span>C++</span><span>Memory Systems</span>
+              </div>
+              <span class="flip-hint mono">hover to read →</span>
             </div>
-          </div>
-          <h3>Project Title One</h3>
-          <p>A one-to-two sentence description of what this project does and why it matters for HPC or architecture research.</p>
-          <div class="project-card__tags">
-            <span>CUDA</span><span>C++</span><span>Memory Systems</span>
+            <!-- BACK: description + links -->
+            <div class="project-flip__back">
+              <div>
+                <h3>Project Title One</h3>
+                <p>A one-to-two sentence description of what this project does and why it matters for HPC or architecture research.</p>
+              </div>
+              <div class="back-links">
+                <a href="#" target="_blank" rel="noopener">GitHub →</a>
+                <a href="#" target="_blank" rel="noopener">Paper →</a>
+              </div>
+            </div>
           </div>
         </article>
 
-        <article class="project-card">
-          <div class="project-card__top">
-            <span class="project-status project-status--done">Completed</span>
-            <div class="project-card__links">
-              <a href="#" target="_blank" rel="noopener" title="GitHub repository">GH</a>
-              <a href="#" target="_blank" rel="noopener" title="Paper PDF">PDF</a>
+        <article class="project-card project-flip">
+          <div class="project-flip__inner">
+            <div class="project-flip__front">
+              <div class="project-card__top">
+                <span class="project-status project-status--done">Completed</span>
+                <div class="project-card__links">
+                  <a href="#" target="_blank" rel="noopener" title="GitHub">GH</a>
+                  <a href="#" target="_blank" rel="noopener" title="Paper">PDF</a>
+                </div>
+              </div>
+              <h3>Project Title Two</h3>
+              <div class="project-card__tags">
+                <span>MPI</span><span>OpenMP</span><span>Performance</span>
+              </div>
+              <span class="flip-hint mono">hover to read →</span>
             </div>
-          </div>
-          <h3>Project Title Two</h3>
-          <p>A description of this completed project, its goals, and the contribution or outcome for the community.</p>
-          <div class="project-card__tags">
-            <span>MPI</span><span>OpenMP</span><span>Performance</span>
+            <div class="project-flip__back">
+              <div>
+                <h3>Project Title Two</h3>
+                <p>A description of this completed project, its goals, and the contribution or outcome for the research community.</p>
+              </div>
+              <div class="back-links">
+                <a href="#" target="_blank" rel="noopener">GitHub →</a>
+                <a href="#" target="_blank" rel="noopener">Paper →</a>
+              </div>
+            </div>
           </div>
         </article>
 
-        <article class="project-card">
-          <div class="project-card__top">
-            <span class="project-status">Active</span>
-            <div class="project-card__links">
-              <a href="#" target="_blank" rel="noopener" title="GitHub repository">GH</a>
+        <article class="project-card project-flip">
+          <div class="project-flip__inner">
+            <div class="project-flip__front">
+              <div class="project-card__top">
+                <span class="project-status">Active</span>
+                <div class="project-card__links">
+                  <a href="#" target="_blank" rel="noopener" title="GitHub">GH</a>
+                </div>
+              </div>
+              <h3>Project Title Three</h3>
+              <div class="project-card__tags">
+                <span>gem5</span><span>Architecture Sim</span><span>Python</span>
+              </div>
+              <span class="flip-hint mono">hover to read →</span>
             </div>
-          </div>
-          <h3>Project Title Three</h3>
-          <p>Brief description of this ongoing research project. What problem does it solve? What's the approach?</p>
-          <div class="project-card__tags">
-            <span>gem5</span><span>Architecture Sim</span><span>Python</span>
+            <div class="project-flip__back">
+              <div>
+                <h3>Project Title Three</h3>
+                <p>Brief description of this ongoing research project. What problem does it solve? What is the approach and expected impact?</p>
+              </div>
+              <div class="back-links">
+                <a href="#" target="_blank" rel="noopener">GitHub →</a>
+              </div>
+            </div>
           </div>
         </article>
 
@@ -376,6 +413,17 @@
     </div>
   </section>
 
+  <!-- ─── SECTION DOTS ─────────────────────────────────── -->
+  <nav class="section-dots" id="sectionDots" aria-label="Page sections">
+    <a href="#home"         class="section-dot" data-section="home"         data-label="Home"></a>
+    <a href="#about"        class="section-dot" data-section="about"        data-label="About"></a>
+    <a href="#research"     class="section-dot" data-section="research"     data-label="Research"></a>
+    <a href="#projects"     class="section-dot" data-section="projects"     data-label="Projects"></a>
+    <a href="#publications" class="section-dot" data-section="publications" data-label="Publications"></a>
+    <a href="#cv"           class="section-dot" data-section="cv"           data-label="CV"></a>
+    <a href="#contact"      class="section-dot" data-section="contact"      data-label="Contact"></a>
+  </nav>
+
   <!-- ─── FOOTER ───────────────────────────────────────── -->
   <footer class="footer">
     <div class="container footer__inner">
@@ -387,4 +435,3 @@
   <script src="assets/js/main.js"></script>
 </body>
 </html>
-
