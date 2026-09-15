@@ -484,6 +484,36 @@ strong { font-weight: 600; color: var(--ink); }
   background: var(--sage);
 }
 
+/* Technical skills list */
+.skills { margin-top: 0.25rem; }
+
+.skill-row {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 1.25rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.skill-row:first-child { border-top: 1px solid var(--line); }
+
+.skill-row dt {
+  font-size: 0.685rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding-top: 0.22rem;
+}
+
+.skill-row dd {
+  font-size: 0.895rem;
+  color: var(--ink-body);
+  line-height: 1.6;
+}
+
+@media (max-width: 680px) {
+  .skill-row { grid-template-columns: 1fr; gap: 0.15rem; }
+}
+
 /* ================================================================
    RESEARCH CARDS
 ================================================================ */
@@ -693,6 +723,15 @@ strong { font-weight: 600; color: var(--ink); }
   font-size: 0.88rem;
   color: var(--ink-soft);
   font-style: italic;
+}
+
+.pub-abstract {
+  font-size: 0.9rem;
+  color: var(--ink-body);
+  line-height: 1.65;
+  margin-top: 0.6rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--line-strong);
 }
 
 .pub-links {

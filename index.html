@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anish Anand Shah · High-Performance Computing &amp; Computer Architecture</title>
-  <meta name="description" content="PhD student in High-Performance Computing and Computer Architecture." />
+  <title>Anish Anand Shah · High-Performance Computing</title>
+  <meta name="description" content="Anish Anand Shah — PhD student in Computer Engineering at Indiana University Bloomington, working on high-performance computing, GPU kernels, and sparse matrix computation." />
 
-  <!-- Newsreader (academic serif) · Inter (body) · JetBrains Mono (labels) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -15,15 +14,13 @@
 </head>
 <body>
 
-  <!-- Paper grain overlay + reading progress -->
   <div class="grain" aria-hidden="true"></div>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <!-- ─── NAV ─────────────────────────────────────────── -->
   <nav class="nav" id="nav">
     <div class="nav__inner container">
-      <!-- ✏️  Replace with your full name -->
-      <a href="#home" class="nav__logo">Anish Anand Shah </a>
+      <a href="#home" class="nav__logo">Anish Anand Shah</a>
 
       <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -45,27 +42,25 @@
     <div class="hero__wash" aria-hidden="true"></div>
 
     <div class="container hero__content">
-      <p class="hero__eyebrow mono">PhD Student &nbsp;·&nbsp; High-Performance Computing &amp; Computer Architecture</p>
+      <p class="hero__eyebrow mono">PhD Student &nbsp;·&nbsp; High-Performance Computing</p>
 
-      <!-- ✏️  Replace with your full name -->
       <h1 class="hero__name">Anish Anand Shah</h1>
 
       <div class="hero__rule" aria-hidden="true"></div>
 
-      <!-- ✏️  Replace institution, department, advisor -->
       <p class="hero__affiliation">
-        Department of Intelligent Systems Engineering, Indiana University<br />
-        Advised by <span class="ink">Dr. Yuxi Hong</span> · Parallel Algorithm and Matrix Computing Lab
+        Department of Computer Engineering, Luddy School of Informatics,<br />
+        Computing and Engineering &nbsp;·&nbsp; Indiana University Bloomington
       </p>
 
-      <!-- ✏️  Replace with a one-sentence research statement -->
       <p class="hero__statement">
-        I work on high-performance sparse linear algebra, building GPU kernels and distributed algorithms that close the gap between irregular scientific workloads and hardware increasingly designed for dense, low-precision computation.
+        I work on making sparse and irregular workloads run fast on modern GPUs with a focus on where
+        architecture, memory behaviour, and real measured performance meet.
       </p>
 
       <div class="hero__actions">
-        <a href="#projects" class="btn btn--primary">View Research</a>
-        <a href="assets/cv.pdf" class="btn btn--ghost" target="_blank" rel="noopener">Curriculum Vitae</a>
+        <a href="#research" class="btn btn--primary">View Research</a>
+        <a href="assets/AnishShah_Resume.pdf" class="btn btn--ghost" target="_blank" rel="noopener">Curriculum Vitae</a>
       </div>
     </div>
 
@@ -87,37 +82,80 @@
 
         <aside class="about__sidebar">
           <div class="about__photo">
-            <!-- ✏️  Replace with: <img src="assets/photo.jpg" alt="Anish [Last Name]" /> -->
+            <!-- ✏️  Replace with: <img src="assets/photo.jpg" alt="Anish Anand Shah" /> -->
             <div class="photo-placeholder"><span class="mono">Your Photo</span></div>
           </div>
 
           <div class="about__links">
-            <!-- ✏️  Update every href below -->
-            <a href="mailto:your@email.edu" class="profile-link">Email</a>
-            <a href="https://scholar.google.com" class="profile-link" target="_blank" rel="noopener">Google Scholar</a>
-            <a href="https://github.com/anish" class="profile-link" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://linkedin.com/in/anish" class="profile-link" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="assets/cv.pdf" class="profile-link" target="_blank" rel="noopener">CV (PDF)</a>
+            <a href="mailto:as262@iu.edu" class="profile-link">as262@iu.edu</a>
+            <a href="https://github.com/anish-shah11" class="profile-link" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://linkedin.com/in/anish-shah-37a794195" class="profile-link" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="assets/AnishShah_Resume.pdf" class="profile-link" target="_blank" rel="noopener">CV (PDF)</a>
           </div>
         </aside>
 
         <div class="about__bio">
-          <!-- ✏️  Rewrite this entire bio -->
           <p class="lead">
-            I'm a PhD student in Computer Engineering at Indiana University Bloomington's Luddy School, where my research centers on sparse computation. What pulls me toward it is a gap I keep running into: modern hardware is extraordinarily good at dense, regular arithmetic and noticeably worse at everything else. The moment structure turns irregular — the moment most of your values are zeros — the bottleneck stops being arithmetic and becomes data movement, and a large share of the machine ends up waiting rather than working.
-            That view came from measurement more than from theory. Benchmarking matrix kernels across CPU and GPU implementations on BigRed200, I watched dense matrix multiply climb to roughly 33 TFLOPS on an A100 while matrix-vector multiply flattened out near 350 GFLOPS — not because the kernel was written badly, but because it had run out of arithmetic to hide memory latency behind. The same lesson turned up in cache behavior, where reordering loops alone shifted L1 miss counts by more than an order of magnitude. Sparse workloads live permanently in that memory-bound regime, which is exactly what makes them interesting to me.
-            Most of my time has gone into inference on specialized hardware. I built a local-to-cloud LLM cascade on an AMD Ryzen AI NPU, bringing up the XRT/XDNA runtime stack and measuring what small models genuinely cost to serve on-device — time-to-first-token, queueing behavior under concurrency, and the point at which a request is better escalated to the cloud than answered locally. Running alongside that, I've been characterizing cold- and warm-start latency for serverless inference functions on the same machine, since a model that responds in milliseconds matters little if the platform needs seconds to hand it a container. Both keep circling the question that drives the sparse work: where does the time actually go, and how much of the hardware is doing something useful?
-            Earlier, before coming to Indiana, I worked closer to the metal — writing simulators for out-of-order superscalar pipelines and configurable cache hierarchies, and building low-level systems code in C++. I like computation as a subject in its own right: the arithmetic, the memory it stirs up, and the distance between what a machine can do on paper and what it manages in practice. Narrowing that distance for workloads that don't fit the dense, regular shape hardware was designed around is what I want to spend my time on.
+            I am a PhD student in Computer Engineering at Indiana University Bloomington's
+            Luddy School, where my research sits in high-performance computing — specifically
+            sparse matrix computation and GPU kernel design.
+          </p>
+          <p>
+            My current work focuses on accelerating Markov clustering for large protein
+            similarity networks. The dominant cost in these pipelines is sparse
+            general matrix–matrix multiplication (SpGEMM), and existing distributed
+            implementations were built for an earlier generation of hardware. I am
+            investigating how much of that cost can be reclaimed on modern GPU
+            architectures, with experiments running on the LAIR cluster.
+          </p>
+          <p>
+            Alongside this, I work on performance characterisation across the stack:
+            benchmarking GEMM implementations from naive C through CUTLASS on A100
+            hardware, profiling accelerator runtimes for on-device LLM inference on
+            AMD Ryzen AI NPUs, and measuring cold-start behaviour in serverless
+            systems. I am drawn to problems where a careful measurement changes what
+            you believed about a system.
+          </p>
+          <p>
+            Before starting my doctorate I spent eighteen months as a C++ developer at
+            TechZest Global Solutions in Pune, working on cryptographic routines inside
+            the OpenSSL framework and on low-level build and API issues. I hold a B.Tech
+            in Electronics and Telecommunication Engineering from the Vishwakarma
+            Institute of Information Technology, Pune.
           </p>
 
           <h3 class="sub-heading">Research Interests</h3>
-          <!-- ✏️  Update to match your areas -->
           <ul class="interests">
-            <li>High Performance Sparse Computing</li>
-            <li>Parallel and Distributed Computing Systems</li>
-            <li>GPU and domain-specific accelerator design</li>
-            <li>Performance modeling, simulation, and characterization</li>
+            <li>Sparse matrix computation and SpGEMM on GPUs</li>
+            <li>GPU kernel optimisation and performance engineering</li>
+            <li>Computer architecture and memory hierarchy design</li>
+            <li>Accelerator runtimes and on-device inference</li>
+            <li>Performance modelling, profiling, and benchmarking methodology</li>
           </ul>
+
+          <h3 class="sub-heading">Technical Skills</h3>
+          <dl class="skills">
+            <div class="skill-row">
+              <dt class="mono">Languages</dt>
+              <dd>C, C++, Python, CUDA C/C++</dd>
+            </div>
+            <div class="skill-row">
+              <dt class="mono">Parallel</dt>
+              <dd>CUDA, OpenMP, MPI, OpenACC, POSIX IPC</dd>
+            </div>
+            <div class="skill-row">
+              <dt class="mono">Libraries</dt>
+              <dd>CUTLASS, cuBLAS, Intel MKL, PAPI, CUDA Toolkit</dd>
+            </div>
+            <div class="skill-row">
+              <dt class="mono">Systems</dt>
+              <dd>Linux, SLURM, XRT/XDNA, Iluvatar FaaS, FastFlowLM, Lemonade</dd>
+            </div>
+            <div class="skill-row">
+              <dt class="mono">Tooling</dt>
+              <dd>GCC, CMake/Make, Git, FastAPI, OpenSSL</dd>
+            </div>
+          </dl>
         </div>
 
       </div>
@@ -133,22 +171,21 @@
       </header>
 
       <div class="research__grid">
-        <!-- ✏️  Update all four cards -->
         <article class="research-card">
-          <h3>Sparsity</h3>
-          <p>GPU-accelerated sparse matrix algorithms for clustering protein networks at scale.</p>
+          <h3>Sparse Matrix Computation</h3>
+          <p>Accelerating SpGEMM — the dominant kernel in Markov clustering of protein networks — on current-generation GPU hardware, where existing distributed implementations leave performance on the table.</p>
         </article>
         <article class="research-card">
-          <h3>Memory Architecture</h3>
-          <p>Cache hierarchy design, prefetching strategies, and near-memory computing for data-intensive parallel workloads.</p>
+          <h3>GPU Kernel Engineering</h3>
+          <p>Tiling, register blocking, and software pipelining for dense and sparse kernels, evaluated against roofline models and hardware counters rather than wall-clock time alone.</p>
         </article>
         <article class="research-card">
-          <h3>Parallel Systems</h3>
-          <p>Scalable algorithms and runtime systems for many-core processors and heterogeneous compute environments.</p>
+          <h3>Computer Architecture</h3>
+          <p>Out-of-order execution, cache and memory hierarchy design, and branch prediction, studied through cycle-level simulators validated against real CPU traces.</p>
         </article>
         <article class="research-card">
-          <h3>Accelerator Design</h3>
-          <p>GPU and domain-specific microarchitecture, warp scheduling, and throughput optimization for scientific computing.</p>
+          <h3>Accelerator Runtimes</h3>
+          <p>On-device LLM inference and serverless execution on NPU hardware — characterising runtime stacks, time-to-first-token, and cold-start latency under realistic load.</p>
         </article>
       </div>
     </div>
@@ -164,70 +201,141 @@
 
       <div class="projects__grid">
 
-        <!-- PROJECT ── copy this whole <article> block to add more -->
+        <!-- 1 ── MCL / SpGEMM -->
         <article class="project-card project-flip">
           <div class="project-flip__inner">
             <div class="project-flip__face project-flip__front">
               <span class="status">Ongoing</span>
-              <h3>Project Title One</h3>
+              <h3>GPU Acceleration of Markov Clustering</h3>
               <div class="tags">
-                <span>CUDA</span><span>C++</span><span>Memory Systems</span>
+                <span>CUDA</span><span>SpGEMM</span><span>C++</span>
               </div>
               <span class="flip-hint mono">Hover for details</span>
             </div>
             <div class="project-flip__face project-flip__back">
               <div>
-                <h3>Project Title One</h3>
-                <p>A one-to-two sentence description of what this project does and the contribution it makes to HPC or architecture research.</p>
-              </div>
-              <div class="back-links">
-                <a href="#" target="_blank" rel="noopener">Repository</a>
-                <a href="#" target="_blank" rel="noopener">Paper</a>
+                <h3>GPU Acceleration of Markov Clustering</h3>
+                <p>Doctoral research on speeding up Markov clustering of large protein similarity networks. The dominant cost is sparse matrix–matrix multiplication, and existing distributed implementations predate current GPU architectures. Experiments run on the LAIR cluster.</p>
               </div>
             </div>
           </div>
         </article>
 
+        <!-- 2 ── GEMM benchmarking -->
         <article class="project-card project-flip">
           <div class="project-flip__inner">
             <div class="project-flip__face project-flip__front">
               <span class="status status--done">Completed</span>
-              <h3>Project Title Two</h3>
+              <h3>GPU/CPU Matrix Benchmarking on BigRed200</h3>
               <div class="tags">
-                <span>MPI</span><span>OpenMP</span><span>Performance</span>
+                <span>CUTLASS</span><span>cuBLAS</span><span>Intel MKL</span><span>PAPI</span>
               </div>
               <span class="flip-hint mono">Hover for details</span>
             </div>
             <div class="project-flip__face project-flip__back">
               <div>
-                <h3>Project Title Two</h3>
-                <p>A description of this completed project, its research goals, and the outcome or contribution to the community.</p>
-              </div>
-              <div class="back-links">
-                <a href="#" target="_blank" rel="noopener">Repository</a>
-                <a href="#" target="_blank" rel="noopener">Paper</a>
+                <h3>GPU/CPU Matrix Benchmarking</h3>
+                <p>Benchmarked seven GEMM implementations — naive C through OpenMP, MKL, OpenACC, CUDA, cuBLAS, and CUTLASS — on an A100 80GB, reaching 32,894 GFLOPS with CUTLASS (168× over baseline). Raised hand-written CUDA throughput 3.2× via tiling, register blocking, and software pipelining. Roofline analysis showed GEMV memory-capped near 350 GFLOPS; PAPI exposed a &gt;10× cache-miss gap across loop orderings.</p>
               </div>
             </div>
           </div>
         </article>
 
+        <!-- 3 ── LLM cascade on NPU -->
         <article class="project-card project-flip">
           <div class="project-flip__inner">
             <div class="project-flip__face project-flip__front">
-              <span class="status">Ongoing</span>
-              <h3>Project Title Three</h3>
+              <span class="status status--done">Completed</span>
+              <h3>Local-to-Cloud LLM Cascade on Ryzen AI NPU</h3>
               <div class="tags">
-                <span>gem5</span><span>Simulation</span><span>Python</span>
+                <span>FastFlowLM</span><span>XRT/XDNA</span><span>FastAPI</span><span>Python</span>
               </div>
               <span class="flip-hint mono">Hover for details</span>
             </div>
             <div class="project-flip__face project-flip__back">
               <div>
-                <h3>Project Title Three</h3>
-                <p>Brief description of this ongoing project: the problem it addresses, the approach taken, and the anticipated impact.</p>
+                <h3>Local-to-Cloud LLM Cascade</h3>
+                <p>A cascade prototype on an AMD Ryzen AI MAX+ 395 NPU using FastFlowLM via Lemonade's OpenAI-compatible API. Validated the XRT/XDNA stack and evaluated four GGUF models across cold-launch and warm streaming passes — Llama-3.2-1B sustained 10–12 ms warm TTFT. A FastAPI proxy serialises concurrent requests, logs queue-wait and service latency, and marks each request for local acceptance or cloud escalation.</p>
               </div>
-              <div class="back-links">
-                <a href="#" target="_blank" rel="noopener">Repository</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4 ── Iluvatar FaaS -->
+        <article class="project-card project-flip">
+          <div class="project-flip__inner">
+            <div class="project-flip__face project-flip__front">
+              <span class="status status--done">Completed</span>
+              <h3>Serverless Cold-Start Benchmarking</h3>
+              <div class="tags">
+                <span>Iluvatar FaaS</span><span>Python</span><span>Linux</span>
+              </div>
+              <span class="flip-hint mono">Hover for details</span>
+            </div>
+            <div class="project-flip__face project-flip__back">
+              <div>
+                <h3>Serverless Cold-Start Benchmarking</h3>
+                <p>Characterised cold- and warm-start latency across eight CPU-inference and systems functions on an Iluvatar FaaS deployment running on Ryzen AI NPU hardware. Quantified the cold-to-warm gap (image_processing 1.414 s → 932 ms; imagenet 7.142 s → 6.271 s; hello 96 ms → 0.385 ms) and diagnosed duplicate HTTP/UnixSocket registration conflicts, isolating one function as a runtime return-path failure rather than measurement error.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5 ── Superscalar simulator -->
+        <article class="project-card project-flip">
+          <div class="project-flip__inner">
+            <div class="project-flip__face project-flip__front">
+              <span class="status status--done">Completed</span>
+              <h3>Superscalar Out-of-Order Pipeline Simulator</h3>
+              <div class="tags">
+                <span>C++</span><span>Tomasulo</span><span>Architecture</span>
+              </div>
+              <span class="flip-hint mono">Hover for details</span>
+            </div>
+            <div class="project-flip__face project-flip__back">
+              <div>
+                <h3>Superscalar Out-of-Order Simulator</h3>
+                <p>A 4-wide out-of-order superscalar simulator in C++ implementing Tomasulo scheduling, a reorder buffer, register renaming, and precise exceptions across nine pipeline stages. Validated gshare and bimodal branch predictors against real CPU traces.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6 ── Cache simulator -->
+        <article class="project-card project-flip">
+          <div class="project-flip__inner">
+            <div class="project-flip__face project-flip__front">
+              <span class="status status--done">Completed</span>
+              <h3>Cache and Memory Hierarchy Design</h3>
+              <div class="tags">
+                <span>C++</span><span>Memory Systems</span>
+              </div>
+              <span class="flip-hint mono">Hover for details</span>
+            </div>
+            <div class="project-flip__face project-flip__back">
+              <div>
+                <h3>Cache and Memory Hierarchy Design</h3>
+                <p>A configurable cache simulator sweeping eleven cache sizes across eight associativities, reaching a compulsory miss rate of 0.025 and an optimal average access time of 0.7342 under write-back write-allocate and LRU replacement policies.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 7 ── RAID-5 -->
+        <article class="project-card project-flip">
+          <div class="project-flip__inner">
+            <div class="project-flip__face project-flip__front">
+              <span class="status status--done">Completed</span>
+              <h3>RAID-5 Storage System Simulator</h3>
+              <div class="tags">
+                <span>C</span><span>Storage</span><span>POSIX</span>
+              </div>
+              <span class="flip-hint mono">Hover for details</span>
+            </div>
+            <div class="project-flip__face project-flip__back">
+              <div>
+                <h3>RAID-5 Storage System Simulator</h3>
+                <p>A 4-disk RAID-5 array implemented from scratch in C — 1 MB raw to 774 KB usable across 63 stripes at 74% efficiency — with rotating-parity layout, XOR degraded reads, full parity rebuild, and a three-state lifecycle from healthy through degraded to recovered, built on pread() and pwrite().</p>
               </div>
             </div>
           </div>
@@ -246,36 +354,20 @@
       </header>
 
       <ol class="pub-list">
-
-        <!-- PUBLICATION ── copy this <li> block to add more -->
-        <li class="pub-item">
-          <span class="pub-year mono">2024</span>
-          <div class="pub-body">
-            <h3 class="pub-title">Your Paper Title: A Study in High-Performance Memory Hierarchy Design</h3>
-            <p class="pub-authors"><strong>A. Shah</strong>, C. Co-Author, and P. Advisor</p>
-            <p class="pub-venue">Proceedings of the [Conference Name] (VENUE '24), pp. 1–12.</p>
-            <div class="pub-links">
-              <a href="#" target="_blank" rel="noopener">PDF</a>
-              <a href="#" target="_blank" rel="noopener">Slides</a>
-              <a href="#" target="_blank" rel="noopener">Code</a>
-              <a href="#" target="_blank" rel="noopener">BibTeX</a>
-            </div>
-          </div>
-        </li>
-
         <li class="pub-item">
           <span class="pub-year mono">2023</span>
           <div class="pub-body">
-            <h3 class="pub-title">Scalable Interconnect Topologies for Manycore Processors</h3>
-            <p class="pub-authors"><strong>A. Shah</strong> and C. Co-Author</p>
-            <p class="pub-venue">[Workshop Name] at [Conference] (VENUE '23).</p>
+            <h3 class="pub-title">Design of a Planar Inverted-F Antenna (PIFA) at 2.4 GHz for Bluetooth and WLAN Applications</h3>
+            <p class="pub-authors"><strong>A. A. Shah</strong></p>
+            <p class="pub-venue">IEEE Workshop on Antenna and Microwave Systems (WAMS), 2023.</p>
+            <p class="pub-abstract">A single-feed-port PIFA design delivering 335 MHz bandwidth, 4.74 dB gain, and a VSWR of 1.02 for Bluetooth and WLAN applications.</p>
             <div class="pub-links">
+              <!-- ✏️  Add the IEEE Xplore / DOI link once you have it -->
               <a href="#" target="_blank" rel="noopener">PDF</a>
-              <a href="#" target="_blank" rel="noopener">Poster</a>
+              <a href="#" target="_blank" rel="noopener">IEEE Xplore</a>
             </div>
           </div>
         </li>
-
       </ol>
     </div>
   </section>
@@ -290,37 +382,45 @@
 
       <div class="timeline">
 
-        <!-- ENTRY ── copy this block to add more -->
         <div class="tl-item">
-          <span class="tl-date mono">2022 — Present</span>
+          <span class="tl-date mono">Jan 2026 — Dec 2030</span>
           <div class="tl-body">
-            <h3>PhD in Computer Science</h3>
-            <span class="tl-org">[University Name]</span>
-            <p>Advised by [Prof. Name]. Research focus: high-performance computing and computer architecture.</p>
+            <h3>PhD in Computer Engineering</h3>
+            <span class="tl-org">Indiana University Bloomington · Luddy School of Informatics, Computing and Engineering</span>
+            <p>Research area: high-performance computing, focused on sparse matrix computation and GPU kernel design. GPA 3.9 / 4.0.</p>
           </div>
         </div>
 
         <div class="tl-item">
-          <span class="tl-date mono">Summer 2024</span>
+          <span class="tl-date mono">May 2024 — Oct 2025</span>
+          <div class="tl-body">
+            <h3>C++ Developer</h3>
+            <span class="tl-org">TechZest Global Solutions · Pune, India</span>
+            <p>Implemented encryption and decryption routines within the OpenSSL framework, strengthening data security by 20%. Eliminated build dependencies, resolved low-level API conflicts, and converted code to RTL, improving system efficiency by 20%.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-date mono">Aug 2019 — May 2023</span>
+          <div class="tl-body">
+            <h3>B.Tech in Electronics and Telecommunication Engineering</h3>
+            <span class="tl-org">Vishwakarma Institute of Information Technology · Savitribai Phule Pune University</span>
+            <p>GPA 8.88 / 10 (3.7 / 4.0).</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-date mono">Jun 2022 — Dec 2022</span>
           <div class="tl-body">
             <h3>Research Intern</h3>
-            <span class="tl-org">[Company or National Laboratory]</span>
-            <p>Worked on [brief description of the project and your specific contribution].</p>
-          </div>
-        </div>
-
-        <div class="tl-item">
-          <span class="tl-date mono">2018 — 2022</span>
-          <div class="tl-body">
-            <h3>B.S. in [Field]</h3>
-            <span class="tl-org">[Previous University]</span>
-            <p>Graduated with honors. Thesis: [undergraduate thesis title, if applicable].</p>
+            <span class="tl-org">Vishwakarma Institute of Information Technology · Pune, India</span>
+            <p>Optimised PIFA antenna performance at 2.4 GHz, raising signal strength to 4.74 dB and reducing VSWR to 1.02 on a compact 5 mm design with 335 MHz bandwidth. Accelerated linear convolution workloads 30% using Python multiprocessing, profiling CPU core performance with VTune Analyzer to isolate bottlenecks.</p>
           </div>
         </div>
 
       </div>
 
-      <a href="assets/cv.pdf" class="btn btn--primary" target="_blank" rel="noopener">Download Full CV</a>
+      <a href="assets/AnishShah_Resume.pdf" class="btn btn--primary" target="_blank" rel="noopener">Download Full CV</a>
     </div>
   </section>
 
@@ -334,23 +434,26 @@
 
       <div class="contact__body">
         <p class="lead">
-          I welcome inquiries about research collaboration, internship opportunities,
-          and discussions on high-performance computing and computer architecture.
+          I welcome inquiries about research collaboration, internship opportunities, and
+          discussions on high-performance computing, GPU kernels, and computer architecture.
         </p>
 
         <dl class="contact__list">
-          <!-- ✏️  Update all values -->
           <div class="contact-row">
             <dt class="mono">Email</dt>
-            <dd><a href="mailto:your@email.edu">as262@iu.edu</a></dd>
+            <dd><a href="mailto:as262@iu.edu">as262@iu.edu</a></dd>
           </div>
           <div class="contact-row">
-            <dt class="mono">Scholar</dt>
-            <dd><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar Profile</a></dd>
+            <dt class="mono">Affiliation</dt>
+            <dd>Luddy School of Informatics, Computing and Engineering<br />Indiana University Bloomington, Bloomington, IN</dd>
           </div>
           <div class="contact-row">
             <dt class="mono">GitHub</dt>
-            <dd><a href="https://github.com/anish" target="_blank" rel="noopener">github.com/anish</a></dd>
+            <dd><a href="https://github.com/anish-shah11" target="_blank" rel="noopener">github.com/anish-shah11</a></dd>
+          </div>
+          <div class="contact-row">
+            <dt class="mono">LinkedIn</dt>
+            <dd><a href="https://linkedin.com/in/anish-shah-37a794195" target="_blank" rel="noopener">linkedin.com/in/anish-shah</a></dd>
           </div>
         </dl>
       </div>
@@ -371,7 +474,7 @@
   <!-- ─── FOOTER ───────────────────────────────────────── -->
   <footer class="footer">
     <div class="container footer__inner">
-      <p>Anish Anand Shah · PhD Student, High-Performance Computing &amp; Computer Architecture</p>
+      <p>Anish Anand Shah · PhD Student, High-Performance Computing · Indiana University Bloomington</p>
       <p class="mono" id="footerDate"></p>
     </div>
   </footer>
