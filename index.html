@@ -3,28 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anish · HPC &amp; Computer Architecture</title>
-  <meta name="description" content="PhD Candidate in High-Performance Computing and Computer Architecture." />
+  <title>Anish Anand Shah · High-Performance Computing &amp; Computer Architecture</title>
+  <meta name="description" content="PhD student in High-Performance Computing and Computer Architecture." />
 
-  <!-- Fonts: Space Grotesk (display) · Inter (body) · JetBrains Mono (code/data) -->
+  <!-- Newsreader (academic serif) · Inter (body) · JetBrains Mono (labels) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
-  <!-- UX: scroll progress + cursor glow -->
+  <!-- Paper grain overlay + reading progress -->
+  <div class="grain" aria-hidden="true"></div>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
   <!-- ─── NAV ─────────────────────────────────────────── -->
   <nav class="nav" id="nav">
     <div class="nav__inner container">
-      <a href="#home" class="nav__logo">ANISH<span class="nav__accent">.</span></a>
+      <!-- ✏️  Replace with your full name -->
+      <a href="#home" class="nav__logo">Anish Anand Shah </a>
 
-      <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
 
@@ -40,141 +41,115 @@
   </nav>
 
   <!-- ─── HERO ─────────────────────────────────────────── -->
-  <section class="hero" id="home">
-    <canvas id="topoCanvas" aria-hidden="true"></canvas>
-    <div class="hero__overlay" aria-hidden="true"></div>
+  <header class="hero" id="home">
+    <div class="hero__wash" aria-hidden="true"></div>
 
-    <div class="hero__content">
-      <div class="hero__eyebrow">
-        <span class="mono tag">PhD Candidate</span>
-        <span class="sep" aria-hidden="true">·</span>
-        <span class="mono tag">HPC &amp; Computer Architecture</span>
-      </div>
+    <div class="container hero__content">
+      <p class="hero__eyebrow mono">PhD Student &nbsp;·&nbsp; High-Performance Computing &amp; Computer Architecture</p>
 
-      <h1 class="hero__name">Anish</h1>
+      <!-- ✏️  Replace with your full name -->
+      <h1 class="hero__name">Anish Anand Shah</h1>
 
-      <!-- ✏️  Replace with your institution -->
-      <p class="hero__institution">University of [Institution] &nbsp;·&nbsp; Advised by [Prof. Name]</p>
+      <div class="hero__rule" aria-hidden="true"></div>
 
-      <!-- Skills constellation — animated graph of core technologies -->
-      <div class="hero__skills" role="presentation" aria-label="Core skills visualization">
-        <span class="skills-label mono">// core expertise</span>
-        <!-- ✏️  Edit skill nodes in assets/js/main.js → SKILL_NODES array -->
-        <canvas id="skillsCanvas" aria-hidden="true"></canvas>
-      </div>
+      <!-- ✏️  Replace institution, department, advisor -->
+      <p class="hero__affiliation">
+        Department of Intelligent Systems Engineering, Indiana University<br />
+        Advised by <span class="ink">Dr. Yuxi Hong</span> · Parallel Algorithm and Matrix Computing Lab
+      </p>
+
+      <!-- ✏️  Replace with a one-sentence research statement -->
+      <p class="hero__statement">
+        I work on high-performance sparse linear algebra, building GPU kernels and distributed algorithms that close the gap between irregular scientific workloads and hardware increasingly designed for dense, low-precision computation.
+      </p>
 
       <div class="hero__actions">
         <a href="#projects" class="btn btn--primary">View Research</a>
-        <!-- ✏️  Replace href with your actual CV path -->
-        <a href="assets/cv.pdf" class="btn btn--ghost" target="_blank" rel="noopener">Download CV</a>
+        <a href="assets/cv.pdf" class="btn btn--ghost" target="_blank" rel="noopener">Curriculum Vitae</a>
       </div>
     </div>
 
-    <div class="hero__scroll-hint" aria-hidden="true">
-      <span class="mono">scroll</span>
+    <div class="hero__scroll" aria-hidden="true">
+      <span class="mono">Scroll</span>
       <div class="scroll-line"></div>
     </div>
-  </section>
+  </header>
 
   <!-- ─── ABOUT ─────────────────────────────────────────── -->
   <section class="section about" id="about">
     <div class="container">
       <header class="section-header">
-        <span class="section-eyebrow mono">// about</span>
-        <h2 class="section-title">Who I am</h2>
+        <span class="section-num mono">01</span>
+        <h2 class="section-title">About</h2>
       </header>
 
       <div class="about__grid">
 
-        <div class="about__sidebar">
-          <div class="about__photo-wrap">
-            <!-- ✏️  Replace the div below with: <img src="assets/photo.jpg" alt="Anish"> -->
-            <div class="about__photo-placeholder">
-              <span>Your Photo</span>
-            </div>
+        <aside class="about__sidebar">
+          <div class="about__photo">
+            <!-- ✏️  Replace with: <img src="assets/photo.jpg" alt="Anish [Last Name]" /> -->
+            <div class="photo-placeholder"><span class="mono">Your Photo</span></div>
           </div>
 
           <div class="about__links">
-            <!-- ✏️  Update each href -->
-            <a href="https://scholar.google.com" class="profile-link" target="_blank" rel="noopener">
-              <span class="profile-link__icon">◎</span> Google Scholar
-            </a>
-            <a href="https://github.com/anish" class="profile-link" target="_blank" rel="noopener">
-              <span class="profile-link__icon">⌥</span> GitHub
-            </a>
-            <a href="https://linkedin.com/in/anish" class="profile-link" target="_blank" rel="noopener">
-              <span class="profile-link__icon">⬡</span> LinkedIn
-            </a>
-            <a href="mailto:your@email.edu" class="profile-link">
-              <span class="profile-link__icon">◈</span> Email
-            </a>
+            <!-- ✏️  Update every href below -->
+            <a href="mailto:your@email.edu" class="profile-link">Email</a>
+            <a href="https://scholar.google.com" class="profile-link" target="_blank" rel="noopener">Google Scholar</a>
+            <a href="https://github.com/anish" class="profile-link" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://linkedin.com/in/anish" class="profile-link" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="assets/cv.pdf" class="profile-link" target="_blank" rel="noopener">CV (PDF)</a>
           </div>
-        </div>
+        </aside>
 
         <div class="about__bio">
-          <!-- ✏️  Replace with your actual bio -->
-          <p class="about__lead">
-            I'm a PhD candidate studying <strong>high-performance computing</strong> and
-            <strong>computer architecture</strong>, working at the boundary of hardware
-            design and large-scale parallel systems.
-          </p>
-          <p>
-            My research explores [your specific focus — e.g., memory hierarchy design,
-            GPU microarchitecture, interconnect topology, or near-memory computing].
-            I work in the [Lab Name] at [University], where we aim to [lab mission].
-          </p>
-          <p>
-            Before my PhD I completed my [B.S./M.S.] in [Field] at [Previous Institution].
-            I've interned at [Company / Lab] where I worked on [brief project description].
+          <!-- ✏️  Rewrite this entire bio -->
+          <p class="lead">
+            I'm a PhD student in Computer Engineering at Indiana University Bloomington's Luddy School, where my research centers on sparse computation. What pulls me toward it is a gap I keep running into: modern hardware is extraordinarily good at dense, regular arithmetic and noticeably worse at everything else. The moment structure turns irregular — the moment most of your values are zeros — the bottleneck stops being arithmetic and becomes data movement, and a large share of the machine ends up waiting rather than working.
+            That view came from measurement more than from theory. Benchmarking matrix kernels across CPU and GPU implementations on BigRed200, I watched dense matrix multiply climb to roughly 33 TFLOPS on an A100 while matrix-vector multiply flattened out near 350 GFLOPS — not because the kernel was written badly, but because it had run out of arithmetic to hide memory latency behind. The same lesson turned up in cache behavior, where reordering loops alone shifted L1 miss counts by more than an order of magnitude. Sparse workloads live permanently in that memory-bound regime, which is exactly what makes them interesting to me.
+            Most of my time has gone into inference on specialized hardware. I built a local-to-cloud LLM cascade on an AMD Ryzen AI NPU, bringing up the XRT/XDNA runtime stack and measuring what small models genuinely cost to serve on-device — time-to-first-token, queueing behavior under concurrency, and the point at which a request is better escalated to the cloud than answered locally. Running alongside that, I've been characterizing cold- and warm-start latency for serverless inference functions on the same machine, since a model that responds in milliseconds matters little if the platform needs seconds to hand it a container. Both keep circling the question that drives the sparse work: where does the time actually go, and how much of the hardware is doing something useful?
+            Earlier, before coming to Indiana, I worked closer to the metal — writing simulators for out-of-order superscalar pipelines and configurable cache hierarchies, and building low-level systems code in C++. I like computation as a subject in its own right: the arithmetic, the memory it stirs up, and the distance between what a machine can do on paper and what it manages in practice. Narrowing that distance for workloads that don't fit the dense, regular shape hardware was designed around is what I want to spend my time on.
           </p>
 
-          <div class="about__interests">
-            <h3 class="interests-heading">Research Interests</h3>
-            <!-- ✏️  Update these to match your focus -->
-            <ul class="interests-list">
-              <li>Memory Hierarchy &amp; Cache Architecture</li>
-              <li>Parallel &amp; Distributed Computing</li>
-              <li>GPU &amp; Domain-Specific Accelerators</li>
-              <li>HPC Interconnects &amp; Network-on-Chip</li>
-              <li>Performance Modeling &amp; Simulation</li>
-            </ul>
-          </div>
+          <h3 class="sub-heading">Research Interests</h3>
+          <!-- ✏️  Update to match your areas -->
+          <ul class="interests">
+            <li>High Performance Sparse Computing</li>
+            <li>Parallel and Distributed Computing Systems</li>
+            <li>GPU and domain-specific accelerator design</li>
+            <li>Performance modeling, simulation, and characterization</li>
+          </ul>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ─── RESEARCH AREAS ────────────────────────────────── -->
+  <!-- ─── RESEARCH ──────────────────────────────────────── -->
   <section class="section research" id="research">
     <div class="container">
       <header class="section-header">
-        <span class="section-eyebrow mono">// research</span>
-        <h2 class="section-title">What I work on</h2>
+        <span class="section-num mono">02</span>
+        <h2 class="section-title">Research Areas</h2>
       </header>
 
       <div class="research__grid">
-        <!-- ✏️  Update cards to match your actual research areas -->
-        <div class="research-card">
-          <div class="research-card__icon" aria-hidden="true">⬡</div>
+        <!-- ✏️  Update all four cards -->
+        <article class="research-card">
+          <h3>Sparsity</h3>
+          <p>GPU-accelerated sparse matrix algorithms for clustering protein networks at scale.</p>
+        </article>
+        <article class="research-card">
           <h3>Memory Architecture</h3>
           <p>Cache hierarchy design, prefetching strategies, and near-memory computing for data-intensive parallel workloads.</p>
-        </div>
-        <div class="research-card">
-          <div class="research-card__icon" aria-hidden="true">⟁</div>
+        </article>
+        <article class="research-card">
           <h3>Parallel Systems</h3>
           <p>Scalable algorithms and runtime systems for many-core processors and heterogeneous compute environments.</p>
-        </div>
-        <div class="research-card">
-          <div class="research-card__icon" aria-hidden="true">◈</div>
+        </article>
+        <article class="research-card">
           <h3>Accelerator Design</h3>
-          <p>GPU and domain-specific microarchitecture, warp scheduling, and throughput optimization for ML and scientific computing.</p>
-        </div>
-        <div class="research-card">
-          <div class="research-card__icon" aria-hidden="true">⊛</div>
-          <h3>Interconnects &amp; NoC</h3>
-          <p>High-bandwidth, low-latency network-on-chip topologies and routing algorithms for manycore processors.</p>
-        </div>
+          <p>GPU and domain-specific microarchitecture, warp scheduling, and throughput optimization for scientific computing.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -183,40 +158,31 @@
   <section class="section projects" id="projects">
     <div class="container">
       <header class="section-header">
-        <span class="section-eyebrow mono">// projects</span>
-        <h2 class="section-title">Selected work</h2>
+        <span class="section-num mono">03</span>
+        <h2 class="section-title">Projects</h2>
       </header>
 
       <div class="projects__grid">
 
-        <!-- PROJECT CARD ── Flip on hover to reveal description + links -->
-        <!-- ✏️  Copy this block to add more projects            -->
+        <!-- PROJECT ── copy this whole <article> block to add more -->
         <article class="project-card project-flip">
           <div class="project-flip__inner">
-            <!-- FRONT: title, status, tags -->
-            <div class="project-flip__front">
-              <div class="project-card__top">
-                <span class="project-status">Active</span>
-                <div class="project-card__links">
-                  <a href="#" target="_blank" rel="noopener" title="GitHub">GH</a>
-                  <a href="#" target="_blank" rel="noopener" title="Paper">PDF</a>
-                </div>
-              </div>
+            <div class="project-flip__face project-flip__front">
+              <span class="status">Ongoing</span>
               <h3>Project Title One</h3>
-              <div class="project-card__tags">
+              <div class="tags">
                 <span>CUDA</span><span>C++</span><span>Memory Systems</span>
               </div>
-              <span class="flip-hint mono">hover to read →</span>
+              <span class="flip-hint mono">Hover for details</span>
             </div>
-            <!-- BACK: description + links -->
-            <div class="project-flip__back">
+            <div class="project-flip__face project-flip__back">
               <div>
                 <h3>Project Title One</h3>
-                <p>A one-to-two sentence description of what this project does and why it matters for HPC or architecture research.</p>
+                <p>A one-to-two sentence description of what this project does and the contribution it makes to HPC or architecture research.</p>
               </div>
               <div class="back-links">
-                <a href="#" target="_blank" rel="noopener">GitHub →</a>
-                <a href="#" target="_blank" rel="noopener">Paper →</a>
+                <a href="#" target="_blank" rel="noopener">Repository</a>
+                <a href="#" target="_blank" rel="noopener">Paper</a>
               </div>
             </div>
           </div>
@@ -224,28 +190,22 @@
 
         <article class="project-card project-flip">
           <div class="project-flip__inner">
-            <div class="project-flip__front">
-              <div class="project-card__top">
-                <span class="project-status project-status--done">Completed</span>
-                <div class="project-card__links">
-                  <a href="#" target="_blank" rel="noopener" title="GitHub">GH</a>
-                  <a href="#" target="_blank" rel="noopener" title="Paper">PDF</a>
-                </div>
-              </div>
+            <div class="project-flip__face project-flip__front">
+              <span class="status status--done">Completed</span>
               <h3>Project Title Two</h3>
-              <div class="project-card__tags">
+              <div class="tags">
                 <span>MPI</span><span>OpenMP</span><span>Performance</span>
               </div>
-              <span class="flip-hint mono">hover to read →</span>
+              <span class="flip-hint mono">Hover for details</span>
             </div>
-            <div class="project-flip__back">
+            <div class="project-flip__face project-flip__back">
               <div>
                 <h3>Project Title Two</h3>
-                <p>A description of this completed project, its goals, and the contribution or outcome for the research community.</p>
+                <p>A description of this completed project, its research goals, and the outcome or contribution to the community.</p>
               </div>
               <div class="back-links">
-                <a href="#" target="_blank" rel="noopener">GitHub →</a>
-                <a href="#" target="_blank" rel="noopener">Paper →</a>
+                <a href="#" target="_blank" rel="noopener">Repository</a>
+                <a href="#" target="_blank" rel="noopener">Paper</a>
               </div>
             </div>
           </div>
@@ -253,36 +213,24 @@
 
         <article class="project-card project-flip">
           <div class="project-flip__inner">
-            <div class="project-flip__front">
-              <div class="project-card__top">
-                <span class="project-status">Active</span>
-                <div class="project-card__links">
-                  <a href="#" target="_blank" rel="noopener" title="GitHub">GH</a>
-                </div>
-              </div>
+            <div class="project-flip__face project-flip__front">
+              <span class="status">Ongoing</span>
               <h3>Project Title Three</h3>
-              <div class="project-card__tags">
-                <span>gem5</span><span>Architecture Sim</span><span>Python</span>
+              <div class="tags">
+                <span>gem5</span><span>Simulation</span><span>Python</span>
               </div>
-              <span class="flip-hint mono">hover to read →</span>
+              <span class="flip-hint mono">Hover for details</span>
             </div>
-            <div class="project-flip__back">
+            <div class="project-flip__face project-flip__back">
               <div>
                 <h3>Project Title Three</h3>
-                <p>Brief description of this ongoing research project. What problem does it solve? What is the approach and expected impact?</p>
+                <p>Brief description of this ongoing project: the problem it addresses, the approach taken, and the anticipated impact.</p>
               </div>
               <div class="back-links">
-                <a href="#" target="_blank" rel="noopener">GitHub →</a>
+                <a href="#" target="_blank" rel="noopener">Repository</a>
               </div>
             </div>
           </div>
-        </article>
-
-        <!-- ADD PROJECT ── placeholder card -->
-        <article class="project-card project-card--add" aria-label="Placeholder: add your project here">
-          <div class="add-icon" aria-hidden="true">+</div>
-          <p>Add your next project</p>
-          <span class="mono add-hint">Edit index.html → projects section</span>
         </article>
 
       </div>
@@ -293,23 +241,24 @@
   <section class="section publications" id="publications">
     <div class="container">
       <header class="section-header">
-        <span class="section-eyebrow mono">// publications</span>
-        <h2 class="section-title">Research output</h2>
+        <span class="section-num mono">04</span>
+        <h2 class="section-title">Publications</h2>
       </header>
 
       <ol class="pub-list">
 
-        <!-- PUB ITEM ── copy this block to add more papers -->
+        <!-- PUBLICATION ── copy this <li> block to add more -->
         <li class="pub-item">
           <span class="pub-year mono">2024</span>
           <div class="pub-body">
             <h3 class="pub-title">Your Paper Title: A Study in High-Performance Memory Hierarchy Design</h3>
-            <p class="pub-authors"><strong>Anish [Last Name]</strong>, Co-Author Name, Prof. Advisor</p>
-            <p class="pub-venue"><em>Conference / Journal Name (VENUE '24)</em></p>
+            <p class="pub-authors"><strong>A. Shah</strong>, C. Co-Author, and P. Advisor</p>
+            <p class="pub-venue">Proceedings of the [Conference Name] (VENUE '24), pp. 1–12.</p>
             <div class="pub-links">
-              <a href="#" target="_blank" rel="noopener">Paper</a>
+              <a href="#" target="_blank" rel="noopener">PDF</a>
               <a href="#" target="_blank" rel="noopener">Slides</a>
               <a href="#" target="_blank" rel="noopener">Code</a>
+              <a href="#" target="_blank" rel="noopener">BibTeX</a>
             </div>
           </div>
         </li>
@@ -317,11 +266,11 @@
         <li class="pub-item">
           <span class="pub-year mono">2023</span>
           <div class="pub-body">
-            <h3 class="pub-title">Another Publication: Scalable Interconnect Topology for Manycore Processors</h3>
-            <p class="pub-authors"><strong>Anish [Last Name]</strong>, Co-Author Name</p>
-            <p class="pub-venue"><em>Workshop / Symposium (VENUE '23)</em></p>
+            <h3 class="pub-title">Scalable Interconnect Topologies for Manycore Processors</h3>
+            <p class="pub-authors"><strong>A. Shah</strong> and C. Co-Author</p>
+            <p class="pub-venue">[Workshop Name] at [Conference] (VENUE '23).</p>
             <div class="pub-links">
-              <a href="#" target="_blank" rel="noopener">Paper</a>
+              <a href="#" target="_blank" rel="noopener">PDF</a>
               <a href="#" target="_blank" rel="noopener">Poster</a>
             </div>
           </div>
@@ -335,80 +284,75 @@
   <section class="section cv-section" id="cv">
     <div class="container">
       <header class="section-header">
-        <span class="section-eyebrow mono">// curriculum vitae</span>
-        <h2 class="section-title">Experience &amp; Education</h2>
+        <span class="section-num mono">05</span>
+        <h2 class="section-title">Education &amp; Experience</h2>
       </header>
 
-      <div class="cv-timeline">
+      <div class="timeline">
 
-        <!-- CV ITEM ── copy this block to add more entries -->
-        <div class="cv-item">
-          <span class="cv-date mono">2022 — Present</span>
-          <div class="cv-content">
+        <!-- ENTRY ── copy this block to add more -->
+        <div class="tl-item">
+          <span class="tl-date mono">2022 — Present</span>
+          <div class="tl-body">
             <h3>PhD in Computer Science</h3>
-            <span class="cv-org">[University Name]</span>
-            <p>Advisor: [Professor Name] &nbsp;·&nbsp; Focus: High-Performance Computing &amp; Computer Architecture</p>
+            <span class="tl-org">[University Name]</span>
+            <p>Advised by [Prof. Name]. Research focus: high-performance computing and computer architecture.</p>
           </div>
         </div>
 
-        <div class="cv-item">
-          <span class="cv-date mono">Summer 2024</span>
-          <div class="cv-content">
+        <div class="tl-item">
+          <span class="tl-date mono">Summer 2024</span>
+          <div class="tl-body">
             <h3>Research Intern</h3>
-            <span class="cv-org">[Company / National Lab]</span>
-            <p>Worked on [brief description of your project and contribution to the team].</p>
+            <span class="tl-org">[Company or National Laboratory]</span>
+            <p>Worked on [brief description of the project and your specific contribution].</p>
           </div>
         </div>
 
-        <div class="cv-item">
-          <span class="cv-date mono">2018 — 2022</span>
-          <div class="cv-content">
+        <div class="tl-item">
+          <span class="tl-date mono">2018 — 2022</span>
+          <div class="tl-body">
             <h3>B.S. in [Field]</h3>
-            <span class="cv-org">[Previous University]</span>
-            <p>Graduated with honors. Thesis: [Undergraduate thesis title, if applicable].</p>
+            <span class="tl-org">[Previous University]</span>
+            <p>Graduated with honors. Thesis: [undergraduate thesis title, if applicable].</p>
           </div>
         </div>
 
       </div>
 
-      <!-- ✏️  Replace href with your actual CV path -->
-      <a href="assets/cv.pdf" class="btn btn--primary" target="_blank" rel="noopener">
-        Download Full CV (PDF)
-      </a>
+      <a href="assets/cv.pdf" class="btn btn--primary" target="_blank" rel="noopener">Download Full CV</a>
     </div>
   </section>
 
   <!-- ─── CONTACT ──────────────────────────────────────── -->
   <section class="section contact" id="contact">
     <div class="container">
-      <div class="contact-inner">
-        <header class="section-header">
-          <span class="section-eyebrow mono">// contact</span>
-          <h2 class="section-title">Let's talk</h2>
-        </header>
-        <p class="contact__sub">
-          Open to research discussions, collaboration, internship opportunities, and
-          questions about HPC and computer architecture. Reach me through any channel below.
+      <header class="section-header">
+        <span class="section-num mono">06</span>
+        <h2 class="section-title">Contact</h2>
+      </header>
+
+      <div class="contact__body">
+        <p class="lead">
+          I welcome inquiries about research collaboration, internship opportunities,
+          and discussions on high-performance computing and computer architecture.
         </p>
-        <div class="contact__channels">
-          <!-- ✏️  Update all hrefs -->
-          <a href="mailto:your@email.edu" class="contact-card">
-            <span class="contact-card__label mono">Email</span>
-            <span class="contact-card__value">your@email.edu</span>
-          </a>
-          <a href="https://scholar.google.com" class="contact-card" target="_blank" rel="noopener">
-            <span class="contact-card__label mono">Google Scholar</span>
-            <span class="contact-card__value">View Publications →</span>
-          </a>
-          <a href="https://github.com/anish" class="contact-card" target="_blank" rel="noopener">
-            <span class="contact-card__label mono">GitHub</span>
-            <span class="contact-card__value">@anish →</span>
-          </a>
-          <a href="https://linkedin.com/in/anish" class="contact-card" target="_blank" rel="noopener">
-            <span class="contact-card__label mono">LinkedIn</span>
-            <span class="contact-card__value">Connect →</span>
-          </a>
-        </div>
+
+        <dl class="contact__list">
+          <!-- ✏️  Update all values -->
+          <div class="contact-row">
+            <dt class="mono">Email</dt>
+            <dd><a href="mailto:your@email.edu">as262@iu.edu</a></dd>
+          </div>
+          <div class="contact-row">
+            <dt class="mono">Scholar</dt>
+            <dd><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar Profile</a></dd>
+          </div>
+          <div class="contact-row">
+            <dt class="mono">GitHub</dt>
+            <dd><a href="https://github.com/anish" target="_blank" rel="noopener">github.com/anish</a></dd>
+          </div>
+        </dl>
       </div>
     </div>
   </section>
@@ -427,8 +371,8 @@
   <!-- ─── FOOTER ───────────────────────────────────────── -->
   <footer class="footer">
     <div class="container footer__inner">
-      <p class="mono">Anish &nbsp;·&nbsp; PhD Candidate, HPC &amp; Computer Architecture</p>
-      <p class="mono footer__updated" id="footerDate"></p>
+      <p>Anish Anand Shah · PhD Student, High-Performance Computing &amp; Computer Architecture</p>
+      <p class="mono" id="footerDate"></p>
     </div>
   </footer>
 
