@@ -575,33 +575,50 @@ strong { font-weight: 600; color: var(--ink); }
   gap: 1.4rem;
 }
 
+/* Cards stretch to the row height set by the grid */
 .project-flip {
+  display: grid;
   perspective: 1200px;
-  min-height: 218px;
+  min-height: 230px;
+  outline: none;
 }
 
+/* Keyboard users: Tab to a card flips it, with a visible ring */
+.project-flip:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: var(--radius-lg);
+}
+
+/* Both faces occupy the SAME grid cell, so the inner element's height
+   resolves to whichever face is taller. Nothing can overflow the card
+   because the card is never shorter than its own content. */
 .project-flip__inner {
-  position: relative;
+  display: grid;
+  grid-template-areas: 'face';
   width: 100%;
-  min-height: 218px;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.project-flip:hover .project-flip__inner { transform: rotateY(180deg); }
+.project-flip:hover .project-flip__inner,
+.project-flip:focus-within .project-flip__inner { transform: rotateY(180deg); }
 
 .project-flip__face {
-  position: absolute;
-  inset: 0;
+  grid-area: face;
+  position: relative;
+  min-width: 0;                     /* lets long words wrap instead of pushing out */
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: 1.65rem;
+  padding: 1.6rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.7rem;
+  overflow-wrap: break-word;
 }
 
 .project-flip__front { align-items: flex-start; }
@@ -610,7 +627,7 @@ strong { font-weight: 600; color: var(--ink); }
   transform: rotateY(180deg);
   background: var(--blue-soft);
   border-color: rgba(78, 110, 142, 0.22);
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .status {
@@ -639,9 +656,9 @@ strong { font-weight: 600; color: var(--ink); }
 }
 
 .project-flip__back p {
-  font-size: 0.9rem;
+  font-size: 0.855rem;
   color: var(--ink-body);
-  line-height: 1.66;
+  line-height: 1.58;
   margin-top: 0.4rem;
 }
 
